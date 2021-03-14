@@ -1,0 +1,72 @@
+#canvas {
+    display: block;
+}
+
+
+#color1{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: red;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 20%;
+    left: 2%;
+}
+
+#color2{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: black;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 25%;
+    left: 2%;
+}
+
+#color3{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: pink;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 30%;
+    left: 2%;
+}
+
+#color4{
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 35%;
+    left: 2%;
+}
+
+#color5{
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 40%;
+    left: 2%;
+}
+
+#color4:hover{
+    color: blue;
+}
+
+#color5:hover{
+    color: blue;
+}
+
+h1{
+    position: fixed;
+    text-align: center;
+    color: pink;
+    left: 25%;
+}

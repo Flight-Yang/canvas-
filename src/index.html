@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1> 使用鼠标滑动，可以直接开始您伟大的创作</h1>
+
+    <div id="color1"></div>
+    <div id="color2"></div>
+    <div id="color3"></div>
+    <div id="color4">橡皮擦</div>
+    <div id="color5">清空</div>
+    <canvas id="canvas"></canvas>
+
+
+    <script type="application/javascript">
+        alert('提示：点击左侧图形可以更改笔触颜色')
+        let canvas = document.getElementById("canvas");
+        canvas.width = document.documentElement.clientWidth
+        canvas.height = document.documentElement.clientHeight
+        let ctx = canvas.getContext("2d"); //canvas标签的方法，返回一个用于在画布上绘图的环境
+        ctx.fillStyle = "rgb(200,0,0)";
+        let x = false;
+        ctx.fillStyle = "black";
+        ctx.strokeStyle = 'none'
+        ctx.lineWidth = 5; //设置线段的宽度
+        ctx.lineCap = "round" //决定线段端点显示的样子,round表示是个圆头
+
+        function drawLine(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+        var isTouchDevice = 'ontouchstart' in document.documentElement;
+        if (isTouchDevice) {
+            canvas.ontouchstart = (e) => {
+                let xa = e.touches[0].clientX
+                let y = e.touches[0].clientY
+                last = [xa, y]
+            }
+            canvas.ontouchmove = (e) => {
+                let xa = e.touches[0].clientX
+                let y = e.touches[0].clientY
+                drawLine(last[0], last[1], xa, y)
+                last = [xa, y]
+            }
+        } else {
+
+            canvas.onmousedown = (e) => {
+                x = true;
+                last = [e.clientX, e.clientY]
+            }
+
+            canvas.onmousemove = (e) => {
+                if (x === true) {
+                    drawLine(last[0], last[1], e.clientX, e.clientY)
+                    last = [e.clientX, e.clientY]
+                }
+
+            }
+
+            canvas.onmouseup = () => {
+                x = false
+            }
+        }
+        color1.onclick = () => {
+            ctx.strokeStyle = 'red'
+        }
+
+        color2.onclick = () => {
+            ctx.strokeStyle = 'black'
+        }
+
+        color3.onclick = () => {
+            ctx.strokeStyle = 'pink'
+        }
+
+        color4.onclick = () => {
+            ctx.strokeStyle = 'white'
+        }
+
+        color5.onclick = () => {
+            //每当canvas重新设置宽、高的时候，画布内容就会被清空，设置完后需要重新设置线的宽度和线头的圆滑
+            canvas.height = canvas.height
+            ctx.lineWidth = 5;
+            ctx.lineCap = "round"
+        }
+
+    </script>
+
+</body>
+
+</html>
